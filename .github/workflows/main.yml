@@ -1,19 +1,30 @@
-name: Actions Demo
+name: Continuous Deployment
 
 on:
- push:
-    branches:
-      - '**'
- pull_request:
-    branches:
-      - '**'
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: completed
 
 jobs:
- echo:
+  deploy:
     runs-on: ubuntu-latest
+
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - name: Echo action step
-        id: step_id
-        run: echo "A new job with this id is added."
-      - name: Print echo output
-        run: echo "The output of the echo step was"
+      - name: checkout the code.
+        uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ''
+          aws-access-key-id: ''
+          aws-secret-access-key: ''
+      - name: setup the kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+      - name: verify the kubectl
+        run: |
+           kubectl version --client 
+          
+          
