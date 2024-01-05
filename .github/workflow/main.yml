@@ -14,6 +14,6 @@ jobs:
     steps:
       - name: Echo action step
         id: step_id
-        run: echo "A new job with this id is added."
+        run: echo "A new jffob with this id is added."
       - name: Print echo output
         run: echo "The output of the ahmed step was: ${{ steps.step_id.outputs.stdout }}"
