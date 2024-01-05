@@ -14,10 +14,11 @@ jobs:
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
+
               with:
-                aws-region: ''
-                aws-secret-access-key: ''
-                aws-access-key-id: ''
+                aws-region: us-east-1
+                aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
             - name: Login to Amazon ECR
               uses: aws-actions/amazon-ecr-login@v1
               id: login-ecr
@@ -30,6 +31,7 @@ jobs:
               run: |
                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Go-app/
                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            
               
               
 
