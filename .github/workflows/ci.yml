@@ -1,0 +1,40 @@
+name: Continuous Integration
+
+on: 
+    push:
+        branches: [main]
+
+jobs:
+    build:
+        name: Build the image
+        runs-on: ubuntu-latest
+        steps:        
+            - name: check the code
+              uses: actions/checkout@v2
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-region: ''
+                aws-secret-access-key: ''
+                aws-access-key-id: ''
+            - name: Login to Amazon ECR
+              uses: aws-actions/amazon-ecr-login@v1
+              id: login-ecr
+            
+            - name: Build, tag, and push image to Amazon ECR
+              env:
+                ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+                ECR_REPOSITORY: goapp-survey
+                IMAGE_TAG: latest
+              run: |
+                docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Go-app/
+                docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+              
+              
+
+
+
+
+                    #- name: Login to Amazon ECR
+             # - name: Build, tag, and push image to Amazon ECR
