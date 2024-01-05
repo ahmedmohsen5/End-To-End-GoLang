@@ -16,4 +16,4 @@ jobs:
         id: step_id
         run: echo "A new job with this id is added."
       - name: Print echo output
-        run: echo "The output of the echo step was: ${{ steps.step_id.outputs.stdout }}"
+        run: echo "The output of the echo step was"
