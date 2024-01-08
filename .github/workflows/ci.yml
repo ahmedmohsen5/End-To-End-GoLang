@@ -13,11 +13,12 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Configure AWS credentials
-              run: |
-                aws configure set aws_access_key_id=AKIAWYXDVORHUUSD2BDA --region us-east-1
-                aws configure set aws_secret_access_key=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 --region us-east-1
+              uses: aws-actions/configure-aws-credentials@v1  
 
-              
+              with:
+                aws-region: us-east-1
+                aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
             - name: Login to Amazon ECR
               uses: aws-actions/amazon-ecr-login@v1
               id: login-ecr
