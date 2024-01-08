@@ -23,5 +23,7 @@ create_secret(){
 }
 create_secret "AWS_ACCESS_KEY_ID" "$AWS_ACCESS_KEY_ID"
 create_secret "AWS_SECRET_ACCESS_KEY" "$AWS_SECRET_ACCESS_KEY"
+echo "$AWS_ACCESS_KEY"
+echo "$AWS_SECRET_ACCESS_KEY"
 echo "the end"
 
