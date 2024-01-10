@@ -1,5 +1,6 @@
 provider "aws" {
   region = "us-east-1"
+  
 }
 
 variable "vpc_cidr_block" {}
@@ -55,7 +56,7 @@ data "aws_eks_cluster_auth" "myapp-cluster" {
 module "eks" {
     source  = "terraform-aws-modules/eks/aws"
     version = "17.20.0"
-
+    
     cluster_name = "golang-eks-cluster"
     cluster_version = "1.28"
 
