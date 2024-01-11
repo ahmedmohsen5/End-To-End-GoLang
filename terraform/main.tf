@@ -83,6 +83,6 @@ module "eks" {
 resource "aws_ecr_repository" "ecr_repo" {
   name = "golange"
   image_scanning_configuration {
-    scan_on_push = true
+    scan_on_push = false
   }
 }
