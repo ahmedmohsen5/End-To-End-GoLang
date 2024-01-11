@@ -1,6 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
-  
+  region = "us-east-2"
 }
 
 variable "vpc_cidr_block" {}
@@ -84,9 +83,9 @@ module "eks" {
 module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "1.6.0"
-
+  
   repository_name = "golange"
-  repository_read_write_access_arns = ["arn:aws:iam::465407669327:role/terraform"]
+  
   repository_type = "private"
 }
 
