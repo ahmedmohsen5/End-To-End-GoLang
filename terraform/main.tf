@@ -80,12 +80,9 @@ module "eks" {
     ]
 }
 
-module "ecr" {
-  source  = "terraform-aws-modules/ecr/aws"
-  version = "1.6.0"
-  
-  repository_name = "golange"
-  
-  repository_type = "private"
+resource "aws_ecr_repository" "ecr_repo" {
+  name = "golange"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
-

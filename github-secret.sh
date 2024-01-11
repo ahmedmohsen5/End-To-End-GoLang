@@ -6,7 +6,8 @@ REPO="End-To-End-GoLang"
 AWS_ACCESS_KEY=$(awk -F "=" '/AWS_ACCESS_KEY_ID/ {print $2}' ~/.aws/credentials | xargs)
 AWS_SECRET_ACCESS_KEY=$(awk -F "=" '/AWS_SECRET_ACCESS_KEY/ {print $2}' ~/.aws/credentials | xargs)
 
-
+access=echo $AWS_ACCESS_KEY | base64
+secret=echo $AWS_SECRET_ACCESS_KEY | base64
 
 create_secret(){
     local secret_name=$1
@@ -21,9 +22,8 @@ create_secret(){
         exit 1
     fi   
 }
-create_secret "AWS_ACCESS_KEY_ID" "$AWS_ACCESS_KEY_ID"
-create_secret "AWS_SECRET_ACCESS_KEY" "$AWS_SECRET_ACCESS_KEY"
-echo "$AWS_ACCESS_KEY"
-echo "$AWS_SECRET_ACCESS_KEY"
+
+create_secret "AWS_ACCESS_KEY_ID" "$access"
+create_secret "AWS_SECRET_ACCESS_KEY" "$secret"
 echo "the end"
 
