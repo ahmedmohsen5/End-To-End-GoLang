@@ -28,7 +28,7 @@ jobs:
            kubectl version --client 
       - name: deployment the kubernates
         run: |
-            echo "${{ vars.KUBECONFIG_SECRET }}" | base64 -d > kubeconfig
+            echo "${{ vars.KUBECONFIG_SECRET }}" > kubeconfig
             export KUBECONFIG=kubeconfig
             kubectl apply -f k8s
           
