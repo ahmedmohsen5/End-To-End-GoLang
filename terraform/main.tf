@@ -56,7 +56,7 @@ module "eks" {
     source  = "terraform-aws-modules/eks/aws"
     version = "17.20.0"
     
-    cluster_name = "golang-eks-cluster"
+    cluster_name = "golang-eks-cluste"
     cluster_version = "1.28"
 
     subnets = module.vpc.private_subnets
