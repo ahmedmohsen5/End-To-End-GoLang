@@ -30,7 +30,7 @@ spec:
           name:  db-deploy
         volumeMounts:
         - name: mongodata
-          mountPath: /data/vol
+          mountPath: /data/db
       volumes:
         - name: mongodata
           persistentVolumeClaim:
@@ -60,11 +60,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
   namespace: golange
-  labels:
-    app: mongo-pvc
 spec:
   storageClassName: local-storage
-  volumMode: Filesystem
   accessModes:
   - ReadWriteOnce
   resources:
