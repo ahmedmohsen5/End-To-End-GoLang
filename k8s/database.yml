@@ -30,7 +30,7 @@ spec:
           name:  db-deploy
         volumeMounts:
         - name: mongodata
-          mountPath: /tmp
+          mountPath: /data/vol
       volumes:
         - name: mongodata
           persistentVolumeClaim:
@@ -63,6 +63,7 @@ metadata:
   labels:
     app: mongo-pvc
 spec:
+  storageClassName: local-storage
   volumMode: Filesystem
   accessModes:
   - ReadWriteOnce
