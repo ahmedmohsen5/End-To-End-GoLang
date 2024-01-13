@@ -30,7 +30,7 @@ spec:
           name:  db-deploy
         volumeMounts:
         - name: mongodata
-          mountPath: /data/db
+          mountPath: /tmp
       volumes:
         - name: mongodata
           persistentVolumeClaim:
