@@ -63,6 +63,7 @@ metadata:
   labels:
     app: mongo-pvc
 spec:
+  volumMode: Filesystem
   accessModes:
   - ReadWriteOnce
   resources:
