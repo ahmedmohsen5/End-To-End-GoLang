@@ -61,7 +61,7 @@ metadata:
   name: mongo-pvc
   namespace: golange
 spec:
-  storageClassName: local-storage
+  
   accessModes:
   - ReadWriteOnce
   resources:
