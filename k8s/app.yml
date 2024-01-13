@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: go-app
-        image: 465407669327.dkr.ecr.REGION.amazonaws.com/REPO_NAME:latest
+        image: 465407669327.dkr.ecr.us-east-2.amazonaws.com/golange:latest
         ports:
           - containerPort: 8080
         env:
