@@ -74,7 +74,7 @@ module "eks" {
             asg_desire_capacity = 2
             asg_max_capacity = 4
             asg_min_capacity = 1
-
+            volume_size = 5
             
         }
     ]
@@ -86,9 +86,27 @@ resource "aws_ecr_repository" "ecr_repo" {
     scan_on_push = false
   }
 }
-
+resource "aws_iam_role" "ebs-role" {
+  name = "ebs-role"
+  assume_role_policy = jsonencode(
+    {
+    Version = "2012-10-17",
+    Statement = [{
+      Action = "sts:AssumeRole",
+      Effect = "Allow",
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+  }
+  )
+}
+resource "aws_iam_role_policy_attachment" "attach-this-policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+  role       = aws_iam_role.ebs-role.name
+}
 resource "aws_ebs_volume" "ebs-volume" {
-  availability_zone = "us-east-2"
+  availability_zone = "us-east-2a"
   size = 20
   type = "gp2"
 }
