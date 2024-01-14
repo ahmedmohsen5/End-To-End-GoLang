@@ -87,3 +87,8 @@ resource "aws_ecr_repository" "ecr_repo" {
   }
 }
 
+resource "aws_ebs_volume" "ebs-volume" {
+  availability_zone = "us-east-2"
+  size = 20
+  type = "gp2"
+}
